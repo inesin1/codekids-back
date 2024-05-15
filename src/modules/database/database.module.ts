@@ -1,11 +1,15 @@
 import { Module } from '@nestjs/common';
 import { LessonRepository } from './repositories/lesson.repository';
-import { LessonEntity } from './entities/lessson.entity';
+import { LessonEntity } from './entities/lesson.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigService } from '@nestjs/config';
+import { TeacherRepository } from './repositories/teacher.repository';
+import { StudentRepository } from './repositories/student.repository';
+import { TeacherEntity } from './entities/teacher.entity';
+import { StudentEntity } from './entities/student.entity';
 
-const providers = [LessonRepository];
-const models = [LessonEntity];
+const providers = [LessonRepository, TeacherRepository, StudentRepository];
+const models = [LessonEntity, TeacherEntity, StudentEntity];
 
 @Module({
   imports: [

@@ -1,18 +1,32 @@
-import { Student } from "src/types/student";
-import { BaseEntity } from "./base.entity";
-import { Entity } from "typeorm";
-import { Dayjs } from "dayjs";
-import { CourseTypes } from "src/types/course-types";
-import { Teacher } from "src/types/teacher";
-import { LessonEntity } from "./lessson.entity";
+import { Student } from 'src/types/student';
+import { BaseEntity } from './base.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { CourseTypes } from 'src/types/course-types';
+import { TeacherEntity } from './teacher.entity';
 
-@Entity()
+@Entity({name: 'student'})
 export class StudentEntity extends BaseEntity implements Partial<Student> {
-    // name: string;
-    // birthday: Date;
-    // age: number;
-    // teacher: Teacher;
-    // courses: CourseTypes[];
-    // contacts: string;
-    lessons: LessonEntity[];
+  @Column()
+  name: string;
+
+  @Column()
+  birthday: Date;
+
+  @Column()
+  age: number;
+
+  @Column()
+  contacts: string;
+
+  @Column({
+    type: 'enum',
+    array: true,
+    enum: CourseTypes,
+    nullable: true,
+  })
+  courses: CourseTypes[];
+
+  @ManyToOne(() => TeacherEntity, (teacher) => teacher.students)
+  @JoinColumn({ name: 'teacher_id' })
+  teacher: TeacherEntity;
 }

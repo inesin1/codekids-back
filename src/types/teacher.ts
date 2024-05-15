@@ -1,5 +1,4 @@
 import { CourseTypes } from "./course-types"
-import { Lesson } from "./lesson"
 import { Student } from "./student"
 
 export interface Teacher {
@@ -7,5 +6,4 @@ export interface Teacher {
     name: string,
     courses: CourseTypes[]
     students: Student[]
-    lessons: Lesson[]
 }

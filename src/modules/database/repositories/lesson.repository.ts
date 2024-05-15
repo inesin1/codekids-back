@@ -1,4 +1,4 @@
-import { LessonEntity } from '../entities/lessson.entity';
+import { LessonEntity } from '../entities/lesson.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseRepository } from './base.repository';
 import { Repository } from 'typeorm';

@@ -1,13 +1,11 @@
 import { Lesson, LessonStatusTypes, PayStatusTypes } from 'src/types/lesson';
 import { BaseEntity } from './base.entity';
 import { CourseTypes } from 'src/types/course-types';
-import { Student } from 'src/types/student';
-import { Teacher } from 'src/types/teacher';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { StudentEntity } from './student.entity';
 import { TeacherEntity } from './teacher.entity';
 
-@Entity()
+@Entity({name: 'lesson'})
 export class LessonEntity extends BaseEntity implements Partial<Lesson> {
   @Column()
   datetime: Date;
@@ -33,11 +31,11 @@ export class LessonEntity extends BaseEntity implements Partial<Lesson> {
   })
   pay_status: PayStatusTypes;
 
-  @ManyToOne((type) => StudentEntity, (student) => student.lessons)
+  @ManyToOne(() => StudentEntity)
   @JoinColumn({ name: 'student_id' })
   student: StudentEntity;
 
-  @ManyToOne((type) => TeacherEntity, (teacher) => teacher.lessons)
+  @ManyToOne(() => TeacherEntity)
   @JoinColumn({ name: 'teacher_id' })
   teacher: TeacherEntity;
 }
