@@ -1,4 +1,4 @@
-import { CourseTypes } from './course-types';
+import { CourseEntity } from 'src/modules/database/entities/course.entity';
 import { Teacher } from './teacher';
 
 export interface Student {
@@ -8,6 +8,6 @@ export interface Student {
   age: number;
   teacher_id: number
   teacher: Teacher;
-  courses: CourseTypes[];
+  course: CourseEntity;
   contacts: string;
 }

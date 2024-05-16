@@ -7,9 +7,11 @@ import { TeacherRepository } from './repositories/teacher.repository';
 import { StudentRepository } from './repositories/student.repository';
 import { TeacherEntity } from './entities/teacher.entity';
 import { StudentEntity } from './entities/student.entity';
+import { CourseRepository } from './repositories/course.repository';
+import { CourseEntity } from './entities/course.entity';
 
-const providers = [LessonRepository, TeacherRepository, StudentRepository];
-const models = [LessonEntity, TeacherEntity, StudentEntity];
+const providers = [LessonRepository, TeacherRepository, StudentRepository, CourseRepository];
+const models = [LessonEntity, TeacherEntity, StudentEntity, CourseEntity];
 
 @Module({
   imports: [

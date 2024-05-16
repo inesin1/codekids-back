@@ -1,5 +1,5 @@
 import { IsDate, IsEnum, IsNumber, IsOptional } from 'class-validator';
-import { CourseTypes } from 'src/types/course-types';
+import { CourseEntity } from 'src/modules/database/entities/course.entity';
 import { Lesson, LessonStatusTypes, PayStatusTypes } from 'src/types/lesson';
 
 export class CreateLessonDto implements Partial<Lesson> {
@@ -13,8 +13,8 @@ export class CreateLessonDto implements Partial<Lesson> {
   teacher_id: number;
 
   @IsOptional()
-  @IsEnum(CourseTypes)
-  course: CourseTypes;
+  @IsEnum(CourseEntity)
+  course: CourseEntity;
 
   @IsOptional()
   @IsEnum(LessonStatusTypes)
