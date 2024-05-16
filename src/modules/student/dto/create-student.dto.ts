@@ -5,7 +5,8 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { CourseTypes } from 'src/types/course-types';
+import { CourseEntity } from 'src/modules/database/entities/course.entity';
+
 import { Student } from 'src/types/student';
 
 export class CreateStudentDto implements Partial<Student> {
@@ -25,8 +26,8 @@ export class CreateStudentDto implements Partial<Student> {
   teacher_id: number;
 
   @IsOptional()
-  @IsEnum(CourseTypes)
-  courses: CourseTypes[];
+  @IsEnum(CourseEntity)
+  course: CourseEntity;
 
   @IsOptional()
   @IsString()

@@ -1,7 +1,8 @@
 import { Dayjs } from 'dayjs';
 import { Student } from './student';
 import { Teacher } from './teacher';
-import { CourseTypes } from './course-types';
+import { CourseEntity } from 'src/modules/database/entities/course.entity';
+
 
 export enum LessonStatusTypes {
   Assigned = 'Назначен',
@@ -22,7 +23,7 @@ export interface Lesson {
   student: Student;
   teacher_id: number;
   teacher: Teacher;
-  course: CourseTypes;
+  course: CourseEntity;
   status: LessonStatusTypes;
   pay_status: PayStatusTypes;
 }

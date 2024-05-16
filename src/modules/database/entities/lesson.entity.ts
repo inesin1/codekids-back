@@ -1,21 +1,16 @@
 import { Lesson, LessonStatusTypes, PayStatusTypes } from 'src/types/lesson';
 import { BaseEntity } from './base.entity';
-import { CourseTypes } from 'src/types/course-types';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { StudentEntity } from './student.entity';
 import { TeacherEntity } from './teacher.entity';
+import { CourseEntity } from './course.entity';
 
 @Entity({ name: 'lesson' })
 export class LessonEntity extends BaseEntity {
   @Column()
   datetime: Date;
 
-  @Column({
-    type: 'enum',
-    enum: CourseTypes,
-    nullable: true,
-  })
-  course: CourseTypes;
+  course: CourseEntity ;
 
   @Column({
     type: 'enum',

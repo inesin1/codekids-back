@@ -1,5 +1,5 @@
 import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator';
-import { CourseTypes } from 'src/types/course-types';
+import { CourseEntity } from 'src/modules/database/entities/course.entity';
 import { Teacher } from 'src/types/teacher';
 
 
@@ -8,6 +8,6 @@ export class CreateTeacherDto implements Partial<Teacher> {
   name: string;
 
   @IsOptional()
-  @IsEnum(CourseTypes)
-  courses: CourseTypes[]
+  @IsEnum(CourseEntity)
+  course: CourseEntity;
 }
