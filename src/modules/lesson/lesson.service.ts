@@ -10,11 +10,12 @@ export class LessonService {
   constructor(private lessonRepository: LessonRepository) {}
 
   create(createLessonDto: CreateLessonDto) {
-    const { student_id, teacher_id } = createLessonDto;
+    const { student_id, teacher_id, course_id } = createLessonDto;
     return this.lessonRepository.save({
       ...createLessonDto,
       student: { id: student_id },
       teacher: { id: teacher_id },
+      course: { id: course_id },
     });
   }
 
@@ -40,11 +41,12 @@ export class LessonService {
   }
 
   update(id: number, updateLessonDto: UpdateLessonDto) {
-    const { student_id, teacher_id } = updateLessonDto;
+    const { student_id, teacher_id, course_id } = updateLessonDto;
     return this.lessonRepository.update(id, {
       ...updateLessonDto,
       student: { id: student_id },
       teacher: { id: teacher_id },
+      course: { id: course_id },
     });
   }
 

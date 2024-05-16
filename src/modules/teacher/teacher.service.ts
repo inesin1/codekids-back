@@ -10,8 +10,10 @@ export class TeacherService {
   constructor(private teacherRepository: TeacherRepository) {}
 
   create(createTeacherDto: CreateTeacherDto) {
+    const { courses_ids } = createTeacherDto;
     return this.teacherRepository.save({
       ...createTeacherDto,
+      courses: courses_ids.map((c) => ({ id: c })),
     });
   }
 

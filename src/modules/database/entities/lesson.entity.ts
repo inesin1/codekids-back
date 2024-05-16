@@ -10,8 +10,6 @@ export class LessonEntity extends BaseEntity {
   @Column()
   datetime: Date;
 
-  course: CourseEntity ;
-
   @Column({
     type: 'enum',
     enum: LessonStatusTypes,
@@ -25,6 +23,10 @@ export class LessonEntity extends BaseEntity {
     default: PayStatusTypes.NotPaid,
   })
   pay_status: PayStatusTypes;
+
+  @ManyToOne(() => CourseEntity)
+  @JoinColumn({ name: 'course_id' })
+  course: CourseEntity;
 
   @ManyToOne(() => StudentEntity)
   @JoinColumn({ name: 'student_id' })

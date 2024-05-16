@@ -3,20 +3,22 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { TeacherEntity } from './teacher.entity';
 import { CourseEntity } from './course.entity';
 
-@Entity({name: 'student'})
-export class StudentEntity extends BaseEntity{
+@Entity({ name: 'student' })
+export class StudentEntity extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   birthday: Date;
 
-  @Column()
+  @Column({ nullable: true })
   age: number;
 
-  @Column()
+  @Column({ nullable: true })
   contacts: string;
 
+  @ManyToOne(() => CourseEntity)
+  @JoinColumn({ name: 'course_id' })
   course: CourseEntity;
 
   @ManyToOne(() => TeacherEntity, (teacher) => teacher.students)

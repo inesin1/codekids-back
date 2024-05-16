@@ -10,10 +10,11 @@ export class StudentService {
   constructor(private studentRepository: StudentRepository) {}
 
   create(createStudentDto: CreateStudentDto) {
-    const { teacher_id } = createStudentDto;
+    const { teacher_id, course_id } = createStudentDto;
     return this.studentRepository.save({
       ...createStudentDto,
       teacher: { id: teacher_id },
+      course: { id: course_id },
     });
   }
 
@@ -36,10 +37,11 @@ export class StudentService {
   }
 
   update(id: number, updateStudentDto: UpdateStudentDto) {
-    const { teacher_id } = updateStudentDto;
+    const { teacher_id, course_id } = updateStudentDto;
     return this.studentRepository.update(id, {
       ...updateStudentDto,
       teacher: { id: teacher_id },
+      course: { id: course_id },
     });
   }
 

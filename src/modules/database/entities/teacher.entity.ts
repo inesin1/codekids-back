@@ -1,6 +1,6 @@
 import { Teacher } from 'src/types/teacher';
 import { BaseEntity } from './base.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, OneToMany } from 'typeorm';
 import { StudentEntity } from './student.entity';
 import { CourseEntity } from './course.entity';
 
@@ -8,7 +8,10 @@ import { CourseEntity } from './course.entity';
 export class TeacherEntity extends BaseEntity {
   @Column()
   name: string;
-  course: CourseEntity;
+
+  @ManyToMany(() => CourseEntity, { cascade: true })
+  @JoinTable()
+  courses: CourseEntity[];
 
   @OneToMany(() => StudentEntity, (student) => student.teacher)
   students: StudentEntity[];
