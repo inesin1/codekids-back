@@ -18,7 +18,7 @@ export class LessonService {
     });
   }
 
-  findAll(queryOptions?: QueryOptions) {
+  findAll(queryOptions: QueryOptions) {
     return this.lessonRepository.findAll({
       where: queryOptions.search
         ? [
@@ -32,7 +32,7 @@ export class LessonService {
     });
   }
 
-  findOne(id: number, queryOptions?: QueryOptions) {
+  findOne(id: number, queryOptions: QueryOptions) {
     return this.lessonRepository.findOne({
       where: { id },
       relations: queryOptions.with,

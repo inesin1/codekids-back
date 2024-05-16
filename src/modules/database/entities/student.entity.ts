@@ -5,7 +5,7 @@ import { CourseTypes } from 'src/types/course-types';
 import { TeacherEntity } from './teacher.entity';
 
 @Entity({name: 'student'})
-export class StudentEntity extends BaseEntity implements Partial<Student> {
+export class StudentEntity extends BaseEntity{
   @Column()
   name: string;
 

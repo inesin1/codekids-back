@@ -5,8 +5,8 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 import { StudentEntity } from './student.entity';
 import { TeacherEntity } from './teacher.entity';
 
-@Entity({name: 'lesson'})
-export class LessonEntity extends BaseEntity implements Partial<Lesson> {
+@Entity({ name: 'lesson' })
+export class LessonEntity extends BaseEntity {
   @Column()
   datetime: Date;
 

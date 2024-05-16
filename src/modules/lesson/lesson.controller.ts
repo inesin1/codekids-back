@@ -1,7 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+  Query,
+} from '@nestjs/common';
 import { LessonService } from './lesson.service';
 import { CreateLessonDto } from './dto/create-lesson.dto';
 import { UpdateLessonDto } from './dto/update-lesson.dto';
+import { QueryOptions } from 'src/types/query-options';
 
 @Controller('lesson')
 export class LessonController {
@@ -9,21 +20,29 @@ export class LessonController {
 
   @Post()
   create(@Body() createLessonDto: CreateLessonDto) {
+    console.log(createLessonDto);
+
     return this.lessonService.create(createLessonDto);
   }
 
   @Get()
-  findAll() {
-    return this.lessonService.findAll();
+  findAll(@Query() queryOptions: QueryOptions) {
+    return this.lessonService.findAll(queryOptions);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.lessonService.findOne(id);
+  findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() queryOptions: QueryOptions,
+  ) {
+    return this.lessonService.findOne(id, queryOptions);
   }
 
   @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateLessonDto: UpdateLessonDto) {
+  update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateLessonDto: UpdateLessonDto,
+  ) {
     return this.lessonService.update(id, updateLessonDto);
   }
 

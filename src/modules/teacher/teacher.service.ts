@@ -15,7 +15,7 @@ export class TeacherService {
     });
   }
 
-  findAll(queryOptions?: QueryOptions) {
+  findAll(queryOptions: QueryOptions) {
     return this.teacherRepository.findAll({
       where: queryOptions.search
         ? { name: Like(`%${queryOptions.search}%`) }
@@ -26,7 +26,7 @@ export class TeacherService {
     });
   }
 
-  findOne(id: number, queryOptions?: QueryOptions) {
+  findOne(id: number, queryOptions: QueryOptions) {
     return this.teacherRepository.findOne({
       where: { id },
       relations: queryOptions.with,

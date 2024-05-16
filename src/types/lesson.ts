@@ -18,7 +18,9 @@ export enum PayStatusTypes {
 export interface Lesson {
   id: number;
   datetime: Date;
+  student_id: number;
   student: Student;
+  teacher_id: number;
   teacher: Teacher;
   course: CourseTypes;
   status: LessonStatusTypes;

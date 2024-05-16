@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Query } from '@nestjs/common';
 import { TeacherService } from './teacher.service';
 import { CreateTeacherDto } from './dto/create-teacher.dto';
 import { UpdateTeacherDto } from './dto/update-teacher.dto';
+import { QueryOptions } from 'src/types/query-options';
 
 @Controller('teacher')
 export class TeacherController {
@@ -13,13 +14,13 @@ export class TeacherController {
   }
 
   @Get()
-  findAll() {
-    return this.teacherService.findAll();
+  findAll(@Query() queryOptions: QueryOptions) {
+    return this.teacherService.findAll(queryOptions);
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.teacherService.findOne(id);
+  findOne(@Param('id', ParseIntPipe) id: number, @Query() queryOptions: QueryOptions) {
+    return this.teacherService.findOne(id, queryOptions);
   }
 
   @Patch(':id')

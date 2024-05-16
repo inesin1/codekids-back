@@ -24,6 +24,7 @@ const models = [LessonEntity, TeacherEntity, StudentEntity];
           password: config.get('DB_PASSWORD'),
           database: config.get('DB_DATABASE'),
           autoLoadEntities: true,
+          ssl: true,
           synchronize: true,
         };
       },

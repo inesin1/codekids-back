@@ -17,7 +17,7 @@ export class StudentService {
     });
   }
 
-  findAll(queryOptions?: QueryOptions) {
+  findAll(queryOptions: QueryOptions) {
     return this.studentRepository.findAll({
       where: queryOptions.search
         ? { name: Like(`%${queryOptions.search}%`) }
@@ -28,7 +28,7 @@ export class StudentService {
     });
   }
 
-  findOne(id: number, queryOptions?: QueryOptions) {
+  findOne(id: number, queryOptions: QueryOptions) {
     return this.studentRepository.findOne({
       where: { id },
       relations: queryOptions.with,
