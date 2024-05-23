@@ -9,9 +9,11 @@ import { TeacherEntity } from './entities/teacher.entity';
 import { StudentEntity } from './entities/student.entity';
 import { CourseRepository } from './repositories/course.repository';
 import { CourseEntity } from './entities/course.entity';
+import { UserRepository } from './repositories/user.repository';
+import { UserEntity } from './entities/user.entity';
 
-const providers = [LessonRepository, TeacherRepository, StudentRepository, CourseRepository];
-const models = [LessonEntity, TeacherEntity, StudentEntity, CourseEntity];
+const providers = [LessonRepository, TeacherRepository, StudentRepository, CourseRepository, UserRepository];
+const models = [LessonEntity, TeacherEntity, StudentEntity, CourseEntity, UserEntity];
 
 @Module({
   imports: [

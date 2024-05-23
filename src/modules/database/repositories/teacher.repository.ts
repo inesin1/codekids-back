@@ -6,8 +6,8 @@ import { Repository } from 'typeorm';
 
 export class TeacherRepository extends BaseRepository<TeacherEntity> {
   constructor(
-    @InjectRepository(TeacherEntity) TeacherRepository: Repository<TeacherEntity>,
+    @InjectRepository(TeacherEntity) teacherRepository: Repository<TeacherEntity>,
   ) {
-    super(TeacherRepository);
+    super(teacherRepository);
   }
 }
