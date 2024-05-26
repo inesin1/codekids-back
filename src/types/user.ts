@@ -8,7 +8,7 @@ export interface User {
 }
 
 export enum RoleTypes {
-  Admin = 'Admin',
-  Manager = 'Manager',
-  Teacher = 'Teacher',
+  Admin = 'Админ',
+  Manager = 'Менеджер',
+  Teacher = 'Преподаватель',
 }
