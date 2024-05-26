@@ -21,11 +21,12 @@ export class AuthService {
       );
     await this.validatePassword(password, user);
 
-    const { id, name } = user;
+    const { id, name, role } = user;
     const payload = {
       id,
       name,
       username,
+      role
     };
     return {
       access_token: await this.jwtService.signAsync(payload),

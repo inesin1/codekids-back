@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { QueryOptions } from 'src/types/query-options';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { ILike, Like } from 'typeorm';
 
 @Injectable()
 export class UserService {
@@ -24,7 +25,12 @@ export class UserService {
     const page = queryOptions.page ?? 0;
 
     return this.userRepository.findAll({
-      where: [{ name: queryOptions.search }, { username: queryOptions.search }],
+      where: queryOptions.search
+        ? [
+            { name: ILike(`%${queryOptions.search}%`) },
+            { username: ILike(`%${queryOptions.search}%`) },
+          ]
+        : undefined,
       relations: queryOptions.with,
       take: limit,
       skip: page * limit,

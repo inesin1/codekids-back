@@ -4,4 +4,11 @@ export interface User {
   username: string;
   password: string;
   is_active: boolean;
+  role: RoleTypes;
+}
+
+export enum RoleTypes {
+  Admin = 'Admin',
+  Manager = 'Manager',
+  Teacher = 'Teacher',
 }
