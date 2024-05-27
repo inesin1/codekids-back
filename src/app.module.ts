@@ -7,7 +7,7 @@ import { StudentModule } from './modules/student/student.module';
 import { CourseModule } from './modules/course/course.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { UserModule } from './modules/user/user.module';
-import { HealthController } from './health/health.controller';
+import { HealthController } from './health.controller';
 
 @Module({
   imports: [
