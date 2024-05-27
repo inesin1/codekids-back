@@ -3,7 +3,6 @@ import { Student } from './student';
 import { Teacher } from './teacher';
 import { CourseEntity } from 'src/modules/database/entities/course.entity';
 
-
 export enum LessonStatusTypes {
   Assigned = 'Назначен',
   Completed = 'Проведен',
@@ -26,4 +25,5 @@ export interface Lesson {
   course: CourseEntity;
   status: LessonStatusTypes;
   pay_status: PayStatusTypes;
+  comment?: string;
 }

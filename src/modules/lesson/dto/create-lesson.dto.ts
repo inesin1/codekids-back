@@ -1,4 +1,10 @@
-import { IsDate, IsEnum, IsNumber, IsOptional } from 'class-validator';
+import {
+  IsDate,
+  IsEnum,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 import { LessonStatusTypes, PayStatusTypes } from 'src/types/lesson';
 
 export class CreateLessonDto {
@@ -22,4 +28,8 @@ export class CreateLessonDto {
   @IsOptional()
   @IsEnum(PayStatusTypes)
   pay_status: PayStatusTypes;
+
+  @IsOptional()
+  @IsString()
+  comment?: string;
 }

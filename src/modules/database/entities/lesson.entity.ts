@@ -24,6 +24,9 @@ export class LessonEntity extends BaseEntity {
   })
   pay_status: PayStatusTypes;
 
+  @Column({ nullable: true })
+  comment: string;
+
   @ManyToOne(() => CourseEntity)
   @JoinColumn({ name: 'course_id' })
   course: CourseEntity;
