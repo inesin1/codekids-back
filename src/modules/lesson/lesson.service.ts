@@ -30,6 +30,9 @@ export class LessonService {
       skip: queryOptions.page,
       take: queryOptions.limit,
       relations: queryOptions.with,
+      order: {
+        id: 'DESC',
+      },
     });
   }
 

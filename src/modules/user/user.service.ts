@@ -34,6 +34,9 @@ export class UserService {
       relations: queryOptions.with,
       take: limit,
       skip: page * limit,
+      order: {
+        id: 'DESC',
+      },
     });
   }
 
