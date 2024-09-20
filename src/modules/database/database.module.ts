@@ -20,6 +20,8 @@ const models = [LessonEntity, TeacherEntity, StudentEntity, CourseEntity, UserEn
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory(config: ConfigService) {
+        console.log(config.get('DB_HOST'));
+
         return {
           type: 'postgres',
           host: config.get('DB_HOST'),
