@@ -10,7 +10,7 @@ COPY . ./
 
 RUN yarn build
 
-FROM node:20-alpine as prod
+FROM node:20-alpine AS prod
 
 WORKDIR /app
 
