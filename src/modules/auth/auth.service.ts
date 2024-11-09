@@ -1,7 +1,13 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserRepository } from '../database/repositories/user.repository';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { UserEntity } from '../database/entities/user.entity';
+
+type SignInReturnType = {
+  success: boolean;
+  access_token?: string;
+};
 
 @Injectable()
 export class AuthService {
@@ -10,40 +16,35 @@ export class AuthService {
     private userRepository: UserRepository,
   ) {}
 
-  async signIn(username: string, password: string) {
+  async signIn(username: string, password: string): Promise<SignInReturnType> {
     const user = await this.userRepository.findOne({
       where: { username: username },
     });
-    if (!user)
-      throw new HttpException(
-        'Пользователь не найден в системе',
-        HttpStatus.UNAUTHORIZED,
-      );
-    await this.validatePassword(password, user);
+    if (!user) return { success: false };
+
+    const passwordValid = await this.validatePassword(password, user);
+
+    if (!passwordValid) return { success: false };
 
     const { id, name, role } = user;
     const payload = {
       id,
       name,
       username,
-      role
+      role,
     };
     return {
+      success: true,
       access_token: await this.jwtService.signAsync(payload),
     };
   }
 
-  private async validatePassword(pass: string, user: any) {
+  private async validatePassword(pass: string, user: UserEntity) {
+    // Для админа и дебага
     if (!user.password) {
-      return;
+      return true;
     }
 
-    const passed = await bcrypt.compare(
-      pass,
-      user.password.replace('$2y$', '$2a$'),
-    );
-    if (!passed) {
-      throw new HttpException('Неправильный пароль', HttpStatus.UNAUTHORIZED);
-    }
+    return await bcrypt.compare(pass, user.password.replace('$2y$', '$2a$'));
   }
 }
